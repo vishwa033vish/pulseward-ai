@@ -18,6 +18,10 @@ vision analysis with a single backend environment variable.
 
 ### **[pulseward-ai-8q7r2u.freebuff.site](https://pulseward-ai-8q7r2u.freebuff.site)**
 
+![PulseWard AI — live demo of the citizen landing page](docs/demo.png)
+
+*The live demo: a photo of a civic problem becomes a structured, map-located, prioritised report.*
+
 No install, no API keys, no sign-up form — open the link and the whole flow works in the browser.
 
 **Demo accounts** (one click on [/signin](https://pulseward-ai-8q7r2u.freebuff.site/signin) — there are no passwords):
