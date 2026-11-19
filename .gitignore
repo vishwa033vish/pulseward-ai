@@ -11,3 +11,6 @@ __pycache__/
 .DS_Store
 *.log
 .vite/
+
+# local download bundle
+pulseward-ai.zip
