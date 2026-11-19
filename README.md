@@ -14,6 +14,31 @@ vision analysis with a single backend environment variable.
 > **Honesty by design.** Reports are never sent to a real municipality in this build. Sample data is labelled,
 > AI output is marked as an estimate, and no screen claims real-world resolution.
 
+## 🚀 Live demo
+
+### **[pulseward-ai-8q7r2u.freebuff.site](https://pulseward-ai-8q7r2u.freebuff.site)**
+
+No install, no API keys, no sign-up form — open the link and the whole flow works in the browser.
+
+**Demo accounts** (one click on [/signin](https://pulseward-ai-8q7r2u.freebuff.site/signin) — there are no passwords):
+
+| Account | Role | Try this |
+|---|---|---|
+| **Aarav Raj** · `demo-citizen` | Citizen | Scan a photo → generate a report → submit → track it through 5 stages |
+| **Priya Menon** · `demo-admin` | Administrator | Triage every report, change status, assign departments, open hotspots |
+
+Reports are stored in the visitor's own browser (14 labelled Chennai sample reports are pre-loaded), so the demo
+resets per visitor and nothing is ever sent to an agency.
+
+**Highlights**
+
+- 📸 **Photo → structured report** — category, visible evidence, severity and a recommended action from one image.
+- 🗺️ **Interactive city map** — clustered Leaflet map with category, status and priority filters, search and click-to-pick location.
+- 🎯 **Explainable priority** — a 0–100 score broken down factor by factor, plus a what-if simulator.
+- 🛠️ **Admin command center** — status workflow, department assignment, hotspots and recurring issues.
+- 🗣️ **Bilingual assistant** — English, Tamil and Tanglish, with a local rule-based fallback when no AI key is configured.
+- 🧪 **Zero-key demo mode** — the entire prototype runs offline-first; add a Gemini key to switch the analyzer to real vision.
+
 ---
 
 ## 1. What is actually implemented
