@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Filter, Layers, MapPin, Search, SlidersHorizontal, X } from 'lucide-react';
 import { useApp } from '../store/AppStore';
+import { translate } from '../lib/i18n';
 import { useDocumentTitle } from '../hooks/usePrefersReducedMotion';
 import { MapView } from '../components/MapView';
 import { Button, CategoryBadge, EmptyState, Panel, PriorityBadge, SampleTag, SectionHeading, StatusBadge } from '../components/ui';
@@ -11,7 +12,8 @@ import type { Category, Priority, Status } from '../types';
 
 export function CityMapPage() {
   useDocumentTitle('City Map');
-  const { reports, pushToast } = useApp();
+  const { reports, pushToast, language } = useApp();
+  const tr = (key: string) => translate(key, language);
   const [categories, setCategories] = useState<Category[]>([]);
   const [statuses, setStatuses] = useState<Status[]>([]);
   const [priorities, setPriorities] = useState<Priority[]>([]);
@@ -50,9 +52,9 @@ export function CityMapPage() {
   return (
     <div className="space-y-4">
       <SectionHeading
-        eyebrow="Geospatial view"
-        title="Interactive City Map"
-        description="Every report on an OpenStreetMap base. Markers are coloured by category, urgent open issues pulse, and nearby reports cluster as you zoom out."
+        eyebrow={tr('map.eyebrow')}
+        title={tr('map.title')}
+        description={tr('map.description')}
         action={
           <div className="flex items-center gap-2">
             <SampleTag />

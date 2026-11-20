@@ -15,6 +15,7 @@ import {
   X,
 } from 'lucide-react';
 import { useApp } from '../store/AppStore';
+import { translate } from '../lib/i18n';
 import { useDocumentTitle } from '../hooks/usePrefersReducedMotion';
 import {
   Button,
@@ -50,6 +51,7 @@ export function ComposerPage() {
   useDocumentTitle('Smart Report Generator');
   const navigate = useNavigate();
   const { draft, saveDraft, addReport, pushToast, profile, reports, language } = useApp();
+  const tr = (key: string) => translate(key, language);
   const [form, setForm] = useState<Draft>(draft ?? EMPTY_DRAFT);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [confirmCancel, setConfirmCancel] = useState(false);
@@ -174,9 +176,9 @@ export function ComposerPage() {
     return (
       <div className="space-y-6">
         <SectionHeading
-          eyebrow="Step 2 · structure"
-          title="Smart Report Generator"
-          description="Reports are drafted from AI analysis. Start with a scan, or create a blank report if you already know what to file."
+          eyebrow={tr('composer.eyebrow')}
+          title={tr('composer.title')}
+          description={tr('composer.description')}
         />
         <EmptyState
           icon={<ScanLine className="h-6 w-6" />}
@@ -207,9 +209,9 @@ export function ComposerPage() {
   return (
     <div className="space-y-5">
       <SectionHeading
-        eyebrow="Step 2 · structure"
-        title="Smart Report Generator"
-        description="Edit anything before submitting. AI suggestions are estimates — correct them where your own eyes disagree."
+        eyebrow={tr('composer.eyebrow')}
+        title={tr('composer.title')}
+        description={tr('composer.description')}
         action={
           <Button variant="ghost" size="sm" icon={<ArrowLeft className="h-3.5 w-3.5" />} onClick={() => navigate('/app/scan')}>
             Back to scanner

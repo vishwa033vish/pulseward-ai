@@ -16,6 +16,7 @@ import {
   Wand2,
 } from 'lucide-react';
 import { useApp } from '../store/AppStore';
+import { translate } from '../lib/i18n';
 import { useDocumentTitle } from '../hooks/usePrefersReducedMotion';
 import { Button, CategoryBadge, Panel, PriorityBadge, ProgressBar, SampleTag, SectionHeading, Spinner, StatusBadge } from '../components/ui';
 import { analyzeImage, API_URL, compressImage, readAsDataUrl, validateImageFile, type AnalyzeResult } from '../lib/api';
@@ -34,6 +35,7 @@ export function ScannerPage() {
   useDocumentTitle('AI Problem Scanner');
   const navigate = useNavigate();
   const { reports, saveDraft, pushToast, language } = useApp();
+  const tr = (key: string) => translate(key, language);
 
   const [preview, setPreview] = useState<Preview | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -125,9 +127,9 @@ export function ScannerPage() {
   return (
     <div className="space-y-6">
       <SectionHeading
-        eyebrow="Step 1 · capture"
-        title="AI Problem Scanner"
-        description="Upload a photo of a civic problem. The vision model suggests a category, visible evidence, severity and a recommended action. Everything is an estimate you can correct in the next step."
+        eyebrow={tr('scan.eyebrow')}
+        title={tr('scan.title')}
+        description={tr('scan.description')}
         action={
           <div className="flex items-center gap-2">
             <SampleTag />

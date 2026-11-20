@@ -16,6 +16,7 @@ import {
   Users,
 } from 'lucide-react';
 import { useApp } from '../store/AppStore';
+import { translate } from '../lib/i18n';
 import { useDocumentTitle } from '../hooks/usePrefersReducedMotion';
 import {
   Button,
@@ -38,7 +39,8 @@ import type { Category, Priority, Report, Status } from '../types';
 
 export function AdminPage() {
   useDocumentTitle('Admin Command Center');
-  const { reports, profile, updateStatus, assignDepartment, pushToast, resetDemoData } = useApp();
+  const { reports, profile, updateStatus, assignDepartment, pushToast, resetDemoData, language } = useApp();
+  const tr = (key: string) => translate(key, language);
 
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState<Status | 'All'>('All');
@@ -138,9 +140,9 @@ export function AdminPage() {
   return (
     <div className="space-y-5">
       <SectionHeading
-        eyebrow="Municipal operations (demo)"
-        title="Admin Command Center"
-        description="Triage every report, assign demo departments, move statuses and read the city's issue patterns. All actions are simulated in this browser."
+        eyebrow={tr('admin.eyebrow')}
+        title={tr('admin.title')}
+        description={tr('admin.description')}
         action={
           <div className="flex flex-wrap items-center gap-2">
             <span className="chip border-pulse-violet/25 text-pulse-violet">

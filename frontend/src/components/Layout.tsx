@@ -23,6 +23,7 @@ import clsx from 'clsx';
 import { useApp } from '../store/AppStore';
 import { translate } from '../lib/i18n';
 import { AssistantPanel } from './AssistantPanel';
+import { LanguageNotice } from './LanguageNotice';
 import { AI_BACKEND_CONFIGURED } from '../lib/api';
 import { Button } from './ui';
 
@@ -67,6 +68,7 @@ function Logo({ compact }: { compact?: boolean }) {
 
 export function AppLayout() {
   const { profile, language, setLanguage, signOut, signIn } = useApp();
+  const tr = (key: string) => translate(key, language);
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
   const location = useLocation();
@@ -93,7 +95,7 @@ export function AppLayout() {
         <Logo />
         <nav className="mt-7 flex-1 space-y-1">
           <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-500">
-            Workspace
+            {tr('app.workspace')}
           </p>
           {visibleNav.map((item) => (
             <NavLink
@@ -128,10 +130,10 @@ export function AppLayout() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
-            Demo environment
+            {tr('app.demoEnvironment')}
           </div>
           <p className="mt-1.5 text-[10px] leading-relaxed text-ink-500">
-            Reports are stored in this browser. No agency is notified.
+            {tr('app.reportsStayHere')}
           </p>
           <div className="mt-2 flex items-center gap-1 text-[10px] text-ink-500">
             <Bot className="h-3 w-3" />
@@ -158,7 +160,8 @@ export function AppLayout() {
             <button
               onClick={() => setLanguage(language === 'en' ? 'ta' : 'en')}
               className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-[11px] font-medium text-ink-300 transition hover:text-white"
-              title="Switch language"
+              title={tr('notice.toggleTitle')}
+              aria-label={tr('notice.toggleTitle')}
             >
               <Languages className="h-3.5 w-3.5" />
               {language === 'en' ? 'EN' : 'தமிழ்'}
@@ -190,19 +193,21 @@ export function AppLayout() {
                     navigate('/');
                   }}
                   className="rounded-lg p-2 text-ink-400 transition hover:bg-white/[0.06] hover:text-white"
-                  aria-label="Sign out"
-                  title="Sign out"
+                  aria-label={tr('app.signOut')}
+                  title={tr('app.signOut')}
                 >
                   <LogOut className="h-4 w-4" />
                 </button>
               </div>
             ) : (
               <Button size="sm" variant="secondary" icon={<LogIn className="h-3.5 w-3.5" />} onClick={() => navigate('/signin')}>
-                Sign in
+                {tr('app.signIn')}
               </Button>
             )}
           </div>
         </header>
+
+        <LanguageNotice />
 
         <main className="flex-1 px-4 py-6 md:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1400px]">
@@ -300,6 +305,7 @@ export function AppLayout() {
 }
 
 export function FloatingAssistantButton() {
+  const { language } = useApp();
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -311,7 +317,7 @@ export function FloatingAssistantButton() {
           <span className="absolute inset-0 animate-ping rounded-full bg-pulse-cyan opacity-70" />
           <span className="relative block h-2 w-2 rounded-full bg-pulse-cyan" />
         </span>
-        Ask PulseWard AI
+        {translate('app.askPulseward', language)}
       </button>
       <AssistantPanel open={open} onClose={() => setOpen(false)} />
     </>

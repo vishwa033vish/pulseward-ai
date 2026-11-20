@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ClipboardList, Filter, MapPin, Search, X } from 'lucide-react';
 import { useApp } from '../store/AppStore';
+import { translate } from '../lib/i18n';
 import { useDocumentTitle } from '../hooks/usePrefersReducedMotion';
 import { Button, CategoryBadge, EmptyState, Panel, PriorityBadge, SampleTag, SectionHeading, StatusBadge } from '../components/ui';
 import { CATEGORIES, STATUSES } from '../lib/categories';
@@ -12,7 +13,8 @@ const PAGE_SIZE = 8;
 
 export function TrackingPage() {
   useDocumentTitle('Track Reports');
-  const { reports } = useApp();
+  const { reports, language } = useApp();
+  const tr = (key: string) => translate(key, language);
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState<Status | 'All'>('All');
   const [category, setCategory] = useState<Category | 'All'>('All');
@@ -35,9 +37,9 @@ export function TrackingPage() {
   return (
     <div className="space-y-5">
       <SectionHeading
-        eyebrow="Accountability"
-        title="Report Tracking"
-        description="Follow each report through the civic workflow. Status updates here are demo actions — they do not reflect real municipal progress."
+        eyebrow={tr('track.eyebrow')}
+        title={tr('track.title')}
+        description={tr('track.description')}
         action={<SampleTag />}
       />
 
@@ -49,7 +51,8 @@ export function TrackingPage() {
                 <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-500" />
                 <input
                   className="field !pl-9"
-                  placeholder="Search by title, area or report ID…"
+                  placeholder={`${tr('common.search')}…`}
+                  aria-label={tr('common.search')}
                   value={query}
                   onChange={(e) => {
                     setQuery(e.target.value);
@@ -75,7 +78,7 @@ export function TrackingPage() {
                 }}
                 aria-label="Filter by status"
               >
-                <option value="All">All statuses</option>
+                <option value="All">{tr('common.allStatuses')}</option>
                 {STATUSES.map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
@@ -89,7 +92,7 @@ export function TrackingPage() {
                 }}
                 aria-label="Filter by category"
               >
-                <option value="All">All categories</option>
+                <option value="All">{tr('common.allCategories')}</option>
                 {CATEGORIES.map((c) => (
                   <option key={c.id} value={c.id}>{c.label}</option>
                 ))}

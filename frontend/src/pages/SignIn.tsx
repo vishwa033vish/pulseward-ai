@@ -5,6 +5,7 @@ import { Activity, ArrowLeft, ArrowRight, Shield, User, Lock, Info } from 'lucid
 import { useApp } from '../store/AppStore';
 import { useDocumentTitle } from '../hooks/usePrefersReducedMotion';
 import { Button } from '../components/ui';
+import { translate } from '../lib/i18n';
 
 export function SignInPage() {
   useDocumentTitle('Demo sign in');
@@ -45,6 +46,8 @@ export function SignInPage() {
           </Link>
           <button
             onClick={() => setLanguage(ta ? 'en' : 'ta')}
+            title={translate('notice.toggleTitle', language)}
+            aria-label={translate('notice.toggleTitle', language)}
             className="rounded-lg border border-white/10 px-2.5 py-1.5 text-[11px] text-ink-300 hover:text-white"
           >
             {ta ? 'English' : 'தமிழ்'}

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Languages, Send, Sparkles, Trash2 } from 'lucide-react';
 import { useApp } from '../store/AppStore';
+import { translate } from '../lib/i18n';
 import { useDocumentTitle } from '../hooks/usePrefersReducedMotion';
 import { AssistantOrb } from '../components/AssistantPanel';
 import { Button, Panel, SectionHeading } from '../components/ui';
@@ -20,6 +21,7 @@ const STARTERS = [
 export function AssistantPage() {
   useDocumentTitle('AI Assistant');
   const { reports, language, setLanguage, profile } = useApp();
+  const tr = (key: string) => translate(key, language);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome',
@@ -70,9 +72,9 @@ export function AssistantPage() {
   return (
     <div className="space-y-4">
       <SectionHeading
-        eyebrow="Conversational civic help"
-        title="PulseWard AI Assistant"
-        description="Natural-language help for residents and staff. Supports English, Tamil and Tanglish input, and knows this dashboard's report data."
+        eyebrow={tr('assistant.eyebrow')}
+        title={tr('assistant.pageTitle')}
+        description={tr('assistant.description')}
         action={
           <div className="flex items-center gap-2">
             <button

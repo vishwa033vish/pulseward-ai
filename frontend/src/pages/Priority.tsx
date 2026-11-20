@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useApp } from '../store/AppStore';
+import { translate } from '../lib/i18n';
 import { useDocumentTitle } from '../hooks/usePrefersReducedMotion';
 import { Button, Panel, PriorityBadge, ProgressBar, SectionHeading } from '../components/ui';
 import { CATEGORIES } from '../lib/categories';
@@ -23,7 +24,8 @@ const PRIORITY_RANK: Record<Priority, number> = { Low: 0, Medium: 1, High: 2, Ur
 
 export function PriorityPage() {
   useDocumentTitle('AI Priority Intelligence');
-  const { reports } = useApp();
+  const { reports, language } = useApp();
+  const tr = (key: string) => translate(key, language);
 
   const [category, setCategory] = useState<Category>('drainage');
   const [severity, setSeverity] = useState<Severity>('Severe');
@@ -66,9 +68,9 @@ export function PriorityPage() {
   return (
     <div className="space-y-5">
       <SectionHeading
-        eyebrow="Explainable scoring"
-        title="AI Priority Intelligence"
-        description="A transparent, deterministic model that turns report signals into a Low → Urgent estimate — with the reasoning shown, not hidden."
+        eyebrow={tr('priority.eyebrow')}
+        title={tr('priority.title')}
+        description={tr('priority.description')}
         action={
           <span className="chip border-pulse-violet/25 text-pulse-violet">
             <Radar className="h-3 w-3" /> 5 weighted factors
