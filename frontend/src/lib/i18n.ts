@@ -116,6 +116,13 @@ export const t: Dict = {
     en: 'The report lands on the city map. Citizens track status; admins triage, assign and update progress.',
     ta: 'புகார் நகர வரைபடத்தில் இடம்பெறும். குடிமக்கள் நிலையைக் கண்காணிக்கலாம்; நிர்வாகிகள் பரிசீலித்து ஒதுக்கி முன்னேற்றத்தைப் பதிவு செய்வார்கள்.',
   },
+  'landing.metaBuilt': { en: 'Built by', ta: 'உருவாக்கியவர்' },
+  'landing.metaStack': { en: 'Stack', ta: 'தொழில்நுட்பம்' },
+  'landing.metaData': { en: 'Data', ta: 'தரவு' },
+  'landing.metaDataValue': {
+    en: 'Demo dataset in your browser — no agency is notified',
+    ta: 'உங்கள் உலாவியில் டெமோ தரவு — எந்த அமைப்புக்கும் தெரிவிக்கப்படுவதில்லை',
+  },
   'landing.featuresEyebrow': { en: 'Capabilities', ta: 'திறன்கள்' },
   'landing.featuresTitle': {
     en: 'A civic operating layer for the whole city.',
